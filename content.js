@@ -433,7 +433,7 @@ function showInPagePopup(analysis, email, format) {
   card.innerHTML = `
     <div class="alias-header">
       <div class="logo-area">
-        <img src="\${chrome.runtime.getURL("logo.png")}" class="logo-img" alt="Alias Logo" />
+        <img src="\${chrome.runtime.getURL("icon-32.png")}" class="logo-img" alt="Alias Logo" />
         <span class="logo-text">Alias.</span>
       </div>
       <button class="close-btn" id="dismiss-widget" title="Dismiss Widget">&times;</button>
