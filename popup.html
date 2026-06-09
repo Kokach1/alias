@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alias - Contextual Email Generator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Header Section -->
+    <header class="app-header">
+      <div class="logo-area">
+        <img src="logo.png" class="logo-img" alt="Alias Logo" />
+        <span class="logo-text">Alias<span class="logo-dot">.</span></span>
+      </div>
+      <button id="settings-btn" class="icon-button" title="Settings">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Content Area -->
+    <main class="app-content">
+
+      <!-- SCREEN 1: Setup Screen (First time launch) -->
+      <section id="setup-screen" class="screen hidden">
+        <div class="welcome-box">
+          <h2>Welcome to Alias</h2>
+          <p>Configure your primary email to begin generating secure, contextual aliases.</p>
+        </div>
+        <div class="form-group">
+          <label for="setup-email-input">Primary Email Address</label>
+          <input type="email" id="setup-email-input" placeholder="e.g., example@gmail.com" autocomplete="off" />
+          <div id="setup-error" class="error-text hidden">Please enter a valid email address.</div>
+        </div>
+        <button id="setup-save-btn" class="primary-button">
+          Get Started
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </section>
+
+      <!-- SCREEN 2: Dashboard Screen (Active alias generator) -->
+      <section id="dashboard-screen" class="screen hidden">
+        <!-- Site Info Badge -->
+        <div class="context-card">
+          <div class="context-header">
+            <span class="context-label">Current Context</span>
+            <span id="signup-badge" class="badge">Signup Form</span>
+          </div>
+          <h3 id="current-site-name">Website Base</h3>
+          <p id="current-site-url">website.com</p>
+        </div>
+
+        <!-- Alias Card -->
+        <div class="alias-card">
+          <label for="alias-display-input">Generated Alias</label>
+          <div class="input-container">
+            <input type="text" id="alias-display-input" readonly spellcheck="false" />
+            <div class="action-buttons-group">
+              <button id="regenerate-btn" class="action-btn" title="Cycle Context Content">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- CTA Actions Row -->
+          <div class="cta-row">
+            <button id="copy-btn" class="secondary-button" title="Copy to clipboard">
+              <svg id="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <svg id="check-icon" class="hidden text-success" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span id="copy-text">Copy</span>
+            </button>
+            <button id="autofill-btn" class="primary-button" title="Insert into form email field">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+              </svg>
+              <span>Autofill</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Format Options -->
+        <div class="format-section">
+          <label>Alias Format</label>
+          <div class="format-chips">
+            <button class="chip active" data-format="{email}+{site}">+site</button>
+            <button class="chip" data-format="{email}+{context}">+context</button>
+            <button class="chip" data-format="{email}+{site}-{year}">+site-year</button>
+            <button class="chip" data-format="{email}+{context}-{year}">+context-year</button>
+          </div>
+        </div>
+
+        <!-- Warning Alert Banner -->
+        <div id="detection-warning" class="warning-banner hidden">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <div class="warning-message">
+            No signup field detected. Displaying general fallback alias.
+          </div>
+          <button id="close-warning" class="close-btn">&times;</button>
+        </div>
+      </section>
+
+      <!-- Toast Notification -->
+      <div id="toast" class="toast-notification hidden">Notification text here.</div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="privacy-note">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>100% Local. No servers. No tracking.</span>
+      </div>
+      <div id="current-email-footer" class="footer-email"></div>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

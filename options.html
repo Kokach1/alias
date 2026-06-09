@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alias Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="settings-wrapper">
+    <div class="settings-container">
+      
+      <!-- Header -->
+      <header class="settings-header">
+        <div class="logo-area">
+          <img src="logo.png" class="logo-img" alt="Alias Logo" />
+          <span class="logo-text">Alias<span class="logo-dot">.</span> Settings</span>
+        </div>
+      </header>
+
+      <!-- Main Form -->
+      <main class="settings-main">
+        
+        <!-- Primary Email Card -->
+        <section class="settings-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Primary Email Address</h3>
+            <p>Your base email address. Generated aliases will append tags to this email.</p>
+            <div class="input-field-group">
+              <input type="email" id="primary-email" placeholder="e.g. yourname@gmail.com" autocomplete="off" />
+              <div id="email-error" class="error-msg hidden">Please enter a valid email address.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Format Options Card -->
+        <section class="settings-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="9" x2="20" y2="9"></line>
+              <line x1="4" y1="15" x2="20" y2="15"></line>
+              <line x1="10" y1="3" x2="8" y2="21"></line>
+              <line x1="16" y1="3" x2="14" y2="21"></line>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Default Alias Format</h3>
+            <p>Select the standard format that is pre-selected when generating new aliases.</p>
+            
+            <div class="radio-selectors">
+              <label class="radio-label">
+                <input type="radio" name="format" value="{email}+{site}">
+                <div class="radio-design">
+                  <span class="format-preview">username+site@domain.com</span>
+                  <span class="format-desc">Simple Domain Name tag</span>
+                </div>
+              </label>
+
+              <label class="radio-label">
+                <input type="radio" name="format" value="{email}+{context}">
+                <div class="radio-design">
+                  <span class="format-preview">username+brandorpage@domain.com</span>
+                  <span class="format-desc">Page-specific extracted brand text</span>
+                </div>
+              </label>
+
+              <label class="radio-label">
+                <input type="radio" name="format" value="{email}+{site}-{year}">
+                <div class="radio-design">
+                  <span class="format-preview">username+site-2026@domain.com</span>
+                  <span class="format-desc">Domain with current calendar year</span>
+                </div>
+              </label>
+
+              <label class="radio-label">
+                <input type="radio" name="format" value="{email}+{context}-{year}">
+                <div class="radio-design">
+                  <span class="format-preview">username+brand-2026@domain.com</span>
+                  <span class="format-desc">Brand text with current calendar year</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- Detection Settings Card -->
+        <section class="settings-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Signup Form Detection Sensitivity</h3>
+            <p>Determine how aggressive the extension is at identifying page fields as signup forms.</p>
+            
+            <div class="sensitivity-slider-group">
+              <div class="sensitivity-labels">
+                <span class="sens-opt" data-level="low">Low (Score &ge; 25)</span>
+                <span class="sens-opt active" data-level="medium">Medium (Score &ge; 45)</span>
+                <span class="sens-opt" data-level="high">High (Score &ge; 65)</span>
+              </div>
+              <input type="range" id="sensitivity-slider" min="1" max="3" step="1" value="2" class="slider" />
+              <p class="slider-helper-text">
+                Higher sensitivity will trigger signup detection banners on more pages, even with fewer input fields.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Local Privacy Card -->
+        <section class="settings-card privacy-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h3>Privacy Assured</h3>
+            <p>
+              All computations, scoring, and text generation are conducted entirely on your local browser. 
+              No external network requests, zero server dependencies, and absolutely no tracking.
+            </p>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Action Row Footer -->
+      <footer class="settings-actions">
+        <button id="save-btn" class="primary-button">
+          Save Settings
+        </button>
+        <div id="save-status" class="save-status hidden">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Changes Saved!</span>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>

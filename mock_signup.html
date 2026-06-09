@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acme Corp | Create Your Account</title>
+  <meta property="og:site_name" content="Acme Corp Service">
+  <style>
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 20px;
+    }
+    .container {
+      max-width: 450px;
+      width: 100%;
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 30px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #6366f1;
+    }
+    p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 5px;
+    }
+    input {
+      padding: 10px 12px;
+      background: #0f172a;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    input:focus {
+      border-color: #6366f1;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .normal-section {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 450px;
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .link-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIGNUP PAGE DEMO CARD -->
+  <div class="container">
+    <h2>Acme Corp Account</h2>
+    <p>This section acts as a mock Sign Up page (Score should exceed threshold).</p>
+    
+    <form onsubmit="event.preventDefault(); alert('Form submitted!');">
+      <div class="form-group">
+        <label for="email-field">Email Address</label>
+        <input type="email" id="email-field" placeholder="Enter your email" required autocomplete="email">
+      </div>
+      
+      <div class="form-group">
+        <label for="password-field">Password</label>
+        <input type="password" id="password-field" placeholder="Create password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirm-field">Confirm Password</label>
+        <input type="password" id="confirm-field" placeholder="Repeat password" required>
+      </div>
+
+      <button type="submit">Create Account</button>
+    </form>
+  </div>
+
+  <!-- STANDARD PAGE DEMO CARD -->
+  <div class="normal-section">
+    <h3>Standard Page Information</h3>
+    <p>This section behaves like a general, non-signup webpage (Score should be low).</p>
+    <div>
+      Current brand name metadata: <strong>Acme Corp Service</strong> (from meta og:site_name).
+    </div>
+    
+    <div class="link-group">
+      <a href="https://docs.google.com/spreadsheets/d/1234567890/edit" target="_blank">
+        Demo Sheets URL: docs.google.com/spreadsheets/d/1234567890/edit
+      </a>
+      <a href="https://github.com/signup" target="_blank">
+        Test GitHub Signup page: github.com/signup
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
